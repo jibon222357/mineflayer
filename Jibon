@@ -1,0 +1,30 @@
+const mineflayer = require('mineflayer');
+
+// বট তৈরি হচ্ছে
+const bot = mineflayer.createBot({
+  host: 'localhost', // সার্ভারের আইপি দিন
+  port: 25565,       // পোর্ট নাম্বার (ডিফল্ট 25565)
+  username: 'Bot_Bangla' // বটের নাম
+});
+
+// লগ হলে মেসেজ
+bot.on('login', () => {
+  console.log('বট সার্ভারে জয়েন করেছে!');dh1alive.aternos.me
+  bot.chat('সবাইকে নমস্কার! আমি একটা বাংলা বট!');15603
+});
+
+// কেউ কিছু লিখলে বট রিপ্লাই দেবে
+bot.on('chat', (username, message) => {
+  if (username === bot.username) return; // বট নিজেকে রিপ্লাই করবে না
+
+  if (message === 'হ্যালো') {
+    bot.chat(`হ্যালো ${username}! আপনি কেমন আছেন?`);
+  } else if (message === 'সাহায্য') {
+    bot.chat('আমি একটি সার্ভার বট, আপনি "হ্যালো" লিখে দেখুন!');
+  }
+});
+
+// সার্ভার থেকে ডিসকানেক্ট হলে
+bot.on('end', () => {
+  console.log('বট সার্ভার থেকে ডিসকানেক্ট হয়ে গেছে।');
+});
